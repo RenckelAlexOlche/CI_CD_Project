@@ -1,0 +1,31 @@
+#!bin/bash
+sudo apt-get update
+sudo apt-get install nano
+
+sudo apt-get update
+sudo apt-get install \
+  ca-certificates \
+  curl \
+  gnupg \
+  lsb-release
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+
+sudo apt-get update
+sudo apt-get -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+
+#sudo docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+#sudo docker run -it --name jenkins -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home -v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:lts
+docker run -it --name jenkins -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home -v /usr/bin/docker:/usr/bin/docker -v /var/run/docker.sock:/var/run/docker.sock mirekphd/jenkins-jdk17-on-ubuntu2204:latest
+
+
+
+
+
