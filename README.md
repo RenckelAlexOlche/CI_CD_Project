@@ -137,7 +137,10 @@ Add github webhook
 
 ![webhook credentials](images/webhook-credentials.png)
 
+![webhook events](images/webhook-events_1.png)
+
 ![webhook events](images/webhook-events.png)
+
 
 Add pipeline job with ansible
 
@@ -153,7 +156,9 @@ Add pipeline job with ansible
 
 ![job pipeline](images/job-pipeline.png)
 
-If job won't working, try execute this code in target machine
+Save job and run it, then the job will start itself after the push to github
+
+### If job won't working, try execute this code in target machine
 
 ```
 sudo docker exec mysql-server-container mysql -u root --password=31xLobOJO4fFUKE62oOFA8ev1jhFRq -e "create database devops_finaltask_db;"
